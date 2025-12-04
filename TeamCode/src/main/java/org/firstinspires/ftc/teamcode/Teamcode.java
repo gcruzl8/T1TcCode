@@ -1,10 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 /*Write code here yaya!*/
-<<<<<<< HEAD
-public class Teamcode {
-} 
-boolean 
-=======
 
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
@@ -94,4 +89,3 @@ public class BasicOpMode_Linear extends LinearOpMode {
 }
 
 
->>>>>>> df543dff76de967b4ff55a3291052df4b76c98da
