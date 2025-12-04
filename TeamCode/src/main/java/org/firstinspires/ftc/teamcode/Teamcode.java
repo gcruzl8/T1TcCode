@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-/*We the people of the united states do robitcly sewear*/
+/*We the people of the united states do robotically swear*/
 
 
 
