@@ -156,6 +156,7 @@ public class BasicOmniOpMode_Linear extends LinearOpMode {
             frontLeftDrive.setPower(frontLeftPower);
             frontRightDrive.setPower(frontRightPower);
             backLeftDrive.setPower(backLeftPower);
+
             backRightDrive.setPower(backRightPower);
 
             // Show the elapsed game time and wheel power.
