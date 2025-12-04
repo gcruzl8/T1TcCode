@@ -1,5 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 /*Write code here yaya!*/
+<<<<<<< HEAD
+public class Teamcode {
+} 
+boolean 
+=======
 
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
@@ -80,11 +85,13 @@ public class BasicOpMode_Linear extends LinearOpMode {
             leftDrive.setPower(leftPower);
             rightDrive.setPower(rightPower);
 
-            // Show the elapsed game time and wheel power.
+            // bryan is gone
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
             telemetry.update();
-        }
+        } 
     }
 }
 
+
+>>>>>>> df543dff76de967b4ff55a3291052df4b76c98da
