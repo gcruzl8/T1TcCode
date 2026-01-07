@@ -70,9 +70,9 @@ public class Teamcode extends LinearOpMode {
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
-            if(gamepad1.y){
-                leftDrive.setPower(0.5);
-                rightDrive.setPower(0.5);
+            if(gamepad1.dpad_up){
+                leftDrive.setPower(1);
+                rightDrive.setPower(1);
             }
 
             if(gamepad1.dpad_down){
