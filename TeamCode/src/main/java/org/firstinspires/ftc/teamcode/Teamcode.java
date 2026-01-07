@@ -70,6 +70,11 @@ public class Teamcode extends LinearOpMode {
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
+            if(gamepad1.y){
+                leftDrive.setPower(0.5)
+                rightDrive.setPower(0.5)
+         }
+
             // Tank Mode uses one stick to control each wheel.
             // - This requires no math, but it is hard to drive forward slowly and keep straight.
             // leftPower  = -gamepad1.left_stick_y ;
