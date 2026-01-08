@@ -69,6 +69,7 @@ public class Teamcode extends LinearOpMode {
             // - This uses basic math to combine motions and is easier to drive straight.
 
 
+
             if(gamepad1.dpad_left){
                 leftPower = 1;
                 rightPower = 1;
