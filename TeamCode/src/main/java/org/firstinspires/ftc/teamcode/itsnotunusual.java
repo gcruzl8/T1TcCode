@@ -31,8 +31,8 @@ public class itsnotunusual extends OpMode {
         timeElapsed = System.currentTimeMillis();
     }
 
-    @Override
-    public void loop() {
+     @Override
+     public void loop() {
         switch (state){
             case START:
 
