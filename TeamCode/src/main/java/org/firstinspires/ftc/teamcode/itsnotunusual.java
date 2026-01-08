@@ -17,6 +17,7 @@ public class itsnotunusual extends OpMode {
         DONE
     }
     long timeElapsed;
+    State state;
     DcMotor leftDrive, rightDrive;
 
     @Override
@@ -25,7 +26,8 @@ public class itsnotunusual extends OpMode {
         rightDrive = hardwareMap.dcMotor.get("rightDrive");
 
         leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        State state = State.START;
+
+        state = State.START;
         timeElapsed = System.currentTimeMillis();
     }
 
@@ -33,6 +35,17 @@ public class itsnotunusual extends OpMode {
     public void loop() {
         switch (state){
             case START:
+
+                break;
+            case DRIVE:
+
+                break;
+            case PART:
+
+                break;
+            case DONE:
+
+                break;
 
         }
 
@@ -46,11 +59,15 @@ public class itsnotunusual extends OpMode {
     }
     void nextState(State next){
         state = next;
+        timeElapsed = System.currentTimeMillis();
     }
 
     void stopBot(){
        setDaDrive(0, 0);
     }
-    
+
+    boolean timePassed(long ms) {
+        return System.currentTimeMillis() - timeElapsed >= ms;
+    }
     
 }

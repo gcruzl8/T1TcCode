@@ -28,6 +28,7 @@ import com.qualcomm.robotcore.util.Range;
 public class Teamcode extends LinearOpMode {
 
     // Declare OpMode members.
+    // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
@@ -42,6 +43,7 @@ public class Teamcode extends LinearOpMode {
         // step (using the FTC Robot Controller app on the phone).
         leftDrive  = hardwareMap.get(DcMotor.class, "leftDrive");
         rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
+
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
@@ -65,42 +67,31 @@ public class Teamcode extends LinearOpMode {
 
             // POV Mode uses left stick to go forward, and right stick to turn.
             // - This uses basic math to combine motions and is easier to drive straight.
-            double drive = -gamepad1.left_stick_y;
-            double turn  =  gamepad1.right_stick_x;
-            leftPower    = Range.clip(drive, -1.0, 1.0) ;
-            rightPower   = Range.clip(drive, -1.0, 1.0) ;
 
-            /* if(gamepad1.left_stick_x){
-                leftDrive.setPower(1);
-                rightDrive.setPower(-1);
+
+            if(gamepad1.dpad_left){
+                leftPower = 1;
+                rightPower = 1;
+            } else {
+                double drive = gamepad1.left_stick_x;
+                double turn  =  gamepad1.right_stick_y;
+                leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
+                rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+
             }
-            else if(-gamepad1.left_stick_x){
-                leftDrive.setPower(-1);
-                rightDrive.setPower(1);
-            } */
-
-            if(gamepad1.b){
-                leftDrive.setPower(1);
-                rightDrive.setPower(1);
-            }
-
-            if(gamepad1.a){
-                leftDrive.setPower(-0.5);
-                rightDrive.setPower(-0.5);
-            }
-
             // Tank Mode uses one stick to control each wheel.
             // - This requires no math, but it is hard to drive forward slowly and keep straight.
             // leftPower  = -gamepad1.left_stick_y ;
             // rightPower = -gamepad1.right_stick_y ;
 
             // Send calculated power to wheels
+            leftDrive.setPower(leftPower);
+            rightDrive.setPower(rightPower);
 
-
-            // bryan is gone
+            // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
             telemetry.update();
-        } 
+        }
     }
 }
