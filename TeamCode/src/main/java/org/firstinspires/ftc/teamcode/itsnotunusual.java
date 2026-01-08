@@ -36,7 +36,11 @@ public class itsnotunusual extends OpMode {
      public void loop() {
         switch (state){
             case START:
-
+                setDaDrive(1, 1);
+                if(timePassed(500)){
+                    stopBot();
+                    nextState(State.DRIVE);
+                }
                 break;
             case DRIVE:
 
