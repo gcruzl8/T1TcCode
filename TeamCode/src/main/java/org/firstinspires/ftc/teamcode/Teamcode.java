@@ -30,8 +30,11 @@ public class Teamcode extends LinearOpMode {
     // Declare OpMode members.
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftDrive = null;
-    private DcMotor rightDrive = null;
+    private DcMotor leftDrive1 = null;
+    private DcMotor leftDrive2 = null;
+    private DcMotor rightDrive1 = null;
+    private DcMotor rightDrive2 = null;
+
 
     @Override
     public void runOpMode() {
@@ -41,8 +44,10 @@ public class Teamcode extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        leftDrive  = hardwareMap.get(DcMotor.class, "leftDrive");
-        rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
+        leftDrive1  = hardwareMap.get(DcMotor.class, "leftFrontDrive");
+        leftDrive2  = hardwareMap.get(DcMotor.class, "leftBottomDrive ");
+        rightDrive1 = hardwareMap.get(DcMotor.class, "rightFrontDrive");
+        rightDrive2 = hardwareMap.get(DcMotor.class, "rightBottomDrive");
 
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
@@ -59,8 +64,10 @@ public class Teamcode extends LinearOpMode {
         while (opModeIsActive()) {
 
             // Setup a variable for each drive wheel to save power level for telemetry
-            double leftPower;
-            double rightPower;
+            double leftPower1;
+            double leftpower2;
+            double rightPower1;
+            double rightpower2;
 
             // Choose to drive using either Tank Mode, or POV Mode
             // Comment out the method that's not used.  The default below is POV.
@@ -71,13 +78,17 @@ public class Teamcode extends LinearOpMode {
 
 
             if(gamepad1.dpad_left){
-                leftPower = 1;
-                rightPower = 1;
+                leftPower1 = 1;
+                leftpower2 = 1;
+                rightPower1 = 1;
+                rightpower2 = 1;
             } else {
                 double drive = gamepad1.left_stick_x;
                 double turn  =  gamepad1.right_stick_y;
-                leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
-                rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
+                leftPower1    = Range.clip(drive + turn, -1.0, 1.0) ;
+                leftpower2    = Range.clip(drive + turn, -1.0, 1.0);
+                rightPower1   = Range.clip(drive - turn, -1.0, 1.0) ;
+                rightpower2   = Range.clip(drive - turn, -1.0, 1.0);
 
             }
             // Tank Mode uses one stick to control each wheel.
@@ -86,8 +97,8 @@ public class Teamcode extends LinearOpMode {
             // rightPower = -gamepad1.right_stick_y ;
 
             // Send calculated power to wheels
-            leftDrive.setPower(leftPower);
-            rightDrive.setPower(rightPower);
+            leftDrive.setPower(leftPower1);
+            rightDrive.setPower(rightPower2);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
