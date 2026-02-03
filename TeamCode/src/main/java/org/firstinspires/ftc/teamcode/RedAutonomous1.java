@@ -72,6 +72,7 @@ public class RedAutonomous1 extends OpMode {
                     stopBot();
                     nextState(State.RETURN);
                 }
+                break;
             case RETURN:
                 setDaDrive(-1, -1);
                 if(timePassed(1000)){
@@ -87,9 +88,9 @@ public class RedAutonomous1 extends OpMode {
             case DONE:
                 stopBot();
                 counterclockwiseRotation(0);
-
-
+                break;
         }
+
 
     }
 
