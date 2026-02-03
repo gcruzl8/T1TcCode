@@ -107,15 +107,12 @@ public class Teamcode extends LinearOpMode {
             }
 
             // servo
-            if(gamepad1.a){
+            if(gamepad1.b){
                 servo.setPosition(1);
             }
-            else if(gamepad1.b){
-                servo.setPosition(0.5);
-            }
-            else if(gamepad1.x){
-                servo.setPosition(0);
-            }
+            else if(gamepad1.a){
+                servo.setPosition(0.5);}
+
 
 
 

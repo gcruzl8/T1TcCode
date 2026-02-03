@@ -3,10 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous
 public class AutoGaby extends OpMode {
     private DcMotor frontLeft, frontRight, bottomLeft, bottomRight, innerTake, outerTake, shooter;
+    private ElapsedTime runtime = new ElapsedTime();
     static final double     COUNTS_PER_MOTOR_REV    = 560 ;    // eg: TETRIX Motor Encoder
     static final double     DRIVE_GEAR_REDUCTION    = 1.0 ;     // No External Gearing.
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
@@ -24,6 +26,7 @@ public class AutoGaby extends OpMode {
         FINISHED
     }
     State state = State.RUN;
+
     @Override
     public void init() {
         frontLeft = hardwareMap.get(DcMotor.class, "leftFrontDrive");
@@ -123,13 +126,25 @@ public class AutoGaby extends OpMode {
                 break;
             case INTAKE:
                 telemetry.addLine("Collect Balls");
-                if (gamepad1.b) {
-                    state = State.PLACE;
+                if(runtime.seconds()<=3) {
+                    innerTake.setPower(1);
+                    telemetry.addData("Time", "Timer: %4.1f S", runtime.seconds());
+                    telemetry.update();
                 }
+                state=State.PLACE;
+
+
+
                 break;
             case PLACE:
                 telemetry.addLine("Go to Shoot");
-                if (gamepad1.x) {
+                telemetry.addLine("Moving Forward");
+                encoderDrive(DRIVE_SPEED,  48,  48);  // S1: Forward 47 Inches with 5 Sec timeout
+                encoderDrive(TURN_SPEED,   12, -12);  // S2: Turn Right 12 Inches with 4 Sec timeout
+                encoderDrive(DRIVE_SPEED, -24, -24);  // S3: Reverse 24 Inches with 4 Sec timeout
+                telemetry.addData("Path", "Complete");
+                telemetry.update();
+                if (!bottomRight.isBusy()) {
                     state = State.FINISHED;
                 }
                 break;
