@@ -3,10 +3,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-// red alliance autonomous attempt - 5'6 guy
+// blue alliance autonomous attempt - 5'6 guy
 
 @Autonomous
-public class RedAutonomous1 extends OpMode {
+public class BlueAutonomous1 extends OpMode {
 
     enum State {
         START,
@@ -64,7 +64,7 @@ public class RedAutonomous1 extends OpMode {
                 }
                 break;
             case ROTATE:
-                clockwiseRotation(1);
+                counterclockwiseRotation(0.4);
                 if(timePassed(500)){
                     stopBot();
                     clockwiseRotation(0);
@@ -89,11 +89,11 @@ public class RedAutonomous1 extends OpMode {
                 }
                 break;
             case RETURN_ROTATE:
-                counterclockwiseRotation(0.4);
+                clockwiseRotation(0.4);
                 if(timePassed(1000)){
+                    clockwiseRotation(0);
                     stopBot();
                     nextState(State.DONE);
-                    counterclockwiseRotation(0);
                 }
                 break;
             case DONE:
