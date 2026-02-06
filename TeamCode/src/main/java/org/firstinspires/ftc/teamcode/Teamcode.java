@@ -96,11 +96,11 @@ public class Teamcode extends LinearOpMode {
 
             // Shoot
             if(gamepad1.right_trigger>0.2){
-                shooter.setPower(-1.0);
+                shooter.setPower(1.0);
 
             }
             else if (gamepad1.right_bumper){
-                shooter.setPower(1.0);
+                shooter.setPower(-1.0);
             }
             else{
                 shooter.setPower(0);
@@ -108,7 +108,7 @@ public class Teamcode extends LinearOpMode {
 
             // servo
             if(gamepad1.b){
-                servo.setPosition(1);
+                servo.setPosition(0);
             }
             else if(gamepad1.a){
                 servo.setPosition(0.5);}

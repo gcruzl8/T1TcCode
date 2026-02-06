@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 // red alliance autonomous attempt - 5'6 guy
 
 @Autonomous
-public class BlueAutonomus2 extends OpMode {
+public class BlueAutonomous2 extends OpMode {
 
     enum State {
         STRAFE_LEFT,
