@@ -21,6 +21,7 @@ public class BlueAutonomous2 extends OpMode {
     }
 
     long timeElapsed;
+    boolean isFinished = false;
 
     State state;
 
@@ -58,6 +59,7 @@ public class BlueAutonomous2 extends OpMode {
 
     @Override
     public void loop(){
+        if (isFinished) return;
         switch (state){
             case STRAFE_LEFT:
                 strafeLeft(0.5);
@@ -82,7 +84,7 @@ public class BlueAutonomous2 extends OpMode {
                 // servo.setPosition(0);
                 if(timePassed(1500)){
                     stopBot();
-                    strafeRight(0);
+                    strafeLeft(0);
                     nextState(State.DRIVE);
                 }
                 break;
@@ -120,8 +122,8 @@ public class BlueAutonomous2 extends OpMode {
                 break;
             case DONE:
                 stopBot();
+                isFinished = true;
                 break;
-
 
         }
 
