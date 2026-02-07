@@ -59,7 +59,7 @@ public class RedAutonomus2 extends OpMode {
         switch (state){
             case STRAFE_RIGHT:
                 strafeRight(0.5);
-                if(timePassed(500)){
+                if(timePassed(1500)){
                     stopBot();
                     strafeRight(0);
                     nextState(State.DRIVE_INTAKE);

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 // red alliance autonomous attempt - 5'6 guy
 
@@ -24,7 +25,7 @@ public class BlueAutonomous2 extends OpMode {
     State state;
 
     DcMotor leftFrontDrive, leftBottomDrive, rightFrontDrive, rightBottomDrive, innerTake, outerTake, shooter;
-
+    Servo servo;
 
 
     @Override
@@ -36,6 +37,7 @@ public class BlueAutonomous2 extends OpMode {
         innerTake = hardwareMap.get(DcMotor.class, "innerIntake");
         outerTake = hardwareMap.get(DcMotor.class, "outerIntake");
         shooter = hardwareMap.get(DcMotor.class, "shooter");
+        servo = hardwareMap.get(Servo.class, "servo");
 
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         leftBottomDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -59,31 +61,33 @@ public class BlueAutonomous2 extends OpMode {
         switch (state){
             case STRAFE_LEFT:
                 strafeLeft(0.5);
-                if(timePassed(500)){
+                if(timePassed(1500)){
                     stopBot();
                     strafeLeft(0);
                     nextState(State.DRIVE_INTAKE);
                 }
                 break;
             case DRIVE_INTAKE:
-                setDaDrive(0.5, 0.5);
-                intakeOn();
-                if(timePassed(1000)){
+                setDaDrive(-1, -1);
+                reverseIntake();
+               // servo.setPosition(1);
+                if(timePassed(4000)){
                     intakeOff();
                     stopBot();
                     nextState(State.STRAFE_LEFT);
                 }
                 break;
             case STRAFE_RIGHT:
-                strafeRight(0.5);
-                if(timePassed(1000)){
+                strafeLeft(1);
+                // servo.setPosition(0);
+                if(timePassed(1500)){
                     stopBot();
                     strafeRight(0);
                     nextState(State.DRIVE);
                 }
                 break;
             case DRIVE:
-                setDaDrive(0.5, 0.5);
+                setDaDrive(-1, -1);
                 if(timePassed(1000)){
                     stopBot();
                     nextState(State.ROTATE);
